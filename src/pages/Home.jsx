@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Trophy,
   Users,
@@ -7,6 +6,7 @@ import {
   UserPlus,
   ShieldCheck,
   ChevronRight,
+  GalleryThumbnails,
 } from "lucide-react";
 
 const stats = [
@@ -158,6 +158,14 @@ export default function Home({ onNavigate }) {
             desc="Join the manager pool for the event."
             color="orange"
             action={() => onNavigate?.("managers")}
+            bgIcon={Activity}
+          />
+          <HubCard
+            icon={GalleryThumbnails}
+            title="Gallery"
+            desc="Explore past season winners and highlights."
+            color="blue"
+            action={() => onNavigate?.("gallery")}
             bgIcon={Activity}
           />
         </div>

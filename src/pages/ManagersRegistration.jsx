@@ -8,12 +8,13 @@ import {
   CheckCircle,
   Briefcase,
   ShieldCheck,
-  Phone
+  Phone,
+  BookOpen
 } from 'lucide-react';
 
 /**
  * Manager Registration Component
- * Tailored for MSL 2026 Team Managers
+ * Includes Department selection for Engineering and Management courses
  */
 export default function ManagerRegistration() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,10 +24,31 @@ export default function ManagerRegistration() {
     email: '', 
     rollNo: '', 
     phone: '', 
+    department: 'CSE (Core)',
     image: null, 
     paymentProof: null,
     transactionId: ''
   });
+
+  const departments = [
+    "CSE (Core)",
+    "CSE (AI & ML)",
+    "CSE (Data Science)",
+    "CSE (Cyber Security)",
+    "CSBS",
+    "CSE (IoT)",
+    "CSE (AIDS)",
+    "CSIT",
+    "IT",
+    "ECE",
+    "EE",
+    "Mechanical",
+    "Civil",
+    "BCA",
+    "MCA",
+    "BBA",
+    "MBA"
+  ];
 
   const handleFileChange = (e, field) => {
     const file = e.target.files[0];
@@ -38,7 +60,6 @@ export default function ManagerRegistration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call for Manager Registration
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -66,7 +87,6 @@ export default function ManagerRegistration() {
   return (
     <div className="max-w-4xl mx-auto py-12 px-4">
       <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-        {/* Header Section - Indigo Theme for Management */}
         <div className="bg-indigo-700 p-8 text-white relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl font-black tracking-tight">Manager Registration</h2>
@@ -76,7 +96,7 @@ export default function ManagerRegistration() {
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 grid md:grid-cols-2 gap-10">
-          {/* Professional Details Column */}
+          {/* Credentials Column */}
           <div className="space-y-6">
             <h3 className="text-lg font-bold text-gray-800 border-l-4 border-indigo-600 pl-3">Credentials</h3>
             
@@ -115,7 +135,7 @@ export default function ManagerRegistration() {
                 <input 
                   required 
                   className="w-full p-3 border rounded-xl bg-gray-50 focus:ring-2 focus:ring-indigo-500 outline-none uppercase" 
-                  placeholder="e.g. 14200222023" 
+                  placeholder="e.g. 14200223023" 
                   value={regData.rollNo} 
                   onChange={e => setRegData({...regData, rollNo: e.target.value})} 
                 />
@@ -133,6 +153,23 @@ export default function ManagerRegistration() {
                     onChange={e => setRegData({...regData, phone: e.target.value})} 
                   />
                 </div>
+              </div>
+            </div>
+
+            {/* Department Selection Section */}
+            <div>
+              <label className="text-sm font-bold text-gray-700 block mb-1">Department / Course</label>
+              <div className="relative">
+                <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <select 
+                  className="w-full pl-10 p-3 border rounded-xl bg-gray-50 focus:ring-2 focus:ring-indigo-500 outline-none font-medium appearance-none" 
+                  value={regData.department} 
+                  onChange={e => setRegData({...regData, department: e.target.value})}
+                >
+                  {departments.map((dept) => (
+                    <option key={dept} value={dept}>{dept}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
@@ -169,7 +206,7 @@ export default function ManagerRegistration() {
               <div className="bg-white p-3 rounded-xl shadow-md border border-emerald-100">
                 {/* <ShieldCheck className="w-10 h-10 text-emerald-600" /> */}
                 <img
-                  src="../src/assets/msit-logo.png"
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MSL2026-PAYMENT-GATEWAY"
                   alt="QRCode"
                   className="h-20 w-20 object-cover"
                 />

@@ -210,7 +210,7 @@ export default function App() {
       />
 
       {/* LIVE AUCTION CARD */}
-      <div className="mb-12 bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden relative">
+      <div className="mb-12 bg-blue-50 rounded-3xl shadow-2xl border border-blue-100 overflow-hidden relative min-h-[500px] lg:min-h-[500px]">
         {isSold && (
           <div className="absolute inset-0 bg-white/60 backdrop-blur z-10 flex items-center justify-center">
             <div className="bg-white p-8 rounded-3xl shadow-2xl text-center scale-110">
@@ -262,7 +262,7 @@ export default function App() {
         </div>
 
         {/* PLAYER INFO */}
-        <div className="p-8 grid md:grid-cols-12 gap-10 items-center">
+        <div className="p-8 grid md:grid-cols-12 gap-10 items-center min-h-[200px] lg:min-h-[400px]">
           <div className="md:col-span-4 lg:col-span-3">
             <div className="aspect-square rounded-2xl overflow-hidden border-4 border-white shadow-xl">
               <img
@@ -278,10 +278,10 @@ export default function App() {
               {currentPlayer.name}
             </h2>
             <div className="flex gap-2">
-              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-bold text-xs">
+              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-bold text-2xl">
                 {currentPlayer.position}
               </span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded-full font-bold text-xs">
+              <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded-full font-bold text-2xl">
                 Base: {currentPlayer.basePrice} pts
               </span>
             </div>
@@ -291,8 +291,8 @@ export default function App() {
           </div>
 
           {/* BID PANEL */}
-          <div className="md:col-span-12 lg:col-span-4 bg-blue-50 rounded-2xl p-6 border border-blue-100">
-            <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-1">
+          <div className="md:col-span-12 lg:col-span-4 bg-green-200 rounded-2xl p-6 border border-blue-100">
+            <p className="text-[20px] font-bold text-blue-600 uppercase tracking-widest mb-1">
               Current Bid
             </p>
             <p className="text-5xl font-black text-blue-900 mb-4">
@@ -318,73 +318,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* PLAYER DIRECTORY SECTION */}
-      <div className="mb-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-          <h3 className="text-2xl font-bold flex items-center gap-2">
-            <Users size={24} className="text-blue-600" />
-            Player Directory
-          </h3>
-          <div className="flex bg-gray-100 p-1 rounded-xl w-full md:w-auto">
-            <button
-              onClick={() => setViewTab("unsold")}
-              className={`flex-1 md:flex-none px-6 py-2 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-                viewTab === "unsold"
-                  ? "bg-white text-blue-600 shadow-sm"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              <UserMinus size={16} /> Remaining
-            </button>
-            <button
-              onClick={() => setViewTab("sold")}
-              className={`flex-1 md:flex-none px-6 py-2 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-                viewTab === "sold"
-                  ? "bg-white text-green-600 shadow-sm"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              <UserCheck size={16} /> Sold
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {directoryPlayers.length > 0 ? (
-            directoryPlayers.map((player) => (
-              <div
-                key={player.id}
-                className="bg-white p-4 rounded-2xl border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow"
-              >
-                <img
-                  src={player.image}
-                  className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100"
-                  alt={player.name}
-                />
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-sm text-gray-900 truncate">
-                    {player.name}
-                  </h4>
-                  <p className="text-[10px] text-gray-500 font-medium">
-                    {player.position} • ID: {player.id}
-                  </p>
-                  {viewTab === "sold" && (
-                    <p className="text-[10px] text-green-600 font-bold mt-1 truncate">
-                      Sold to {player.owner} @ {player.finalPrice}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="col-span-full py-12 text-center bg-gray-50 rounded-3xl border border-dashed border-gray-200">
-              <p className="text-gray-400 font-medium">
-                No players found in this category.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
 
       {/* BIDDING PANEL HEADER */}
       <div className="flex justify-between items-center mb-6">
@@ -402,7 +335,7 @@ export default function App() {
       </div>
 
       {/* TEAMS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredTeams.map((team) => {
           const isLeading = team.id === leadingTeamId;
           return (
@@ -484,6 +417,73 @@ export default function App() {
             </div>
           );
         })}
+      </div>
+      {/* PLAYER DIRECTORY SECTION */}
+      <div className="mb-4 mt-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <h3 className="text-2xl font-bold flex items-center gap-2">
+            <Users size={24} className="text-blue-600" />
+            Player Directory
+          </h3>
+          <div className="flex bg-gray-100 p-1 rounded-xl w-full md:w-auto">
+            <button
+              onClick={() => setViewTab("unsold")}
+              className={`flex-1 md:flex-none px-6 py-2 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                viewTab === "unsold"
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <UserMinus size={16} /> Remaining
+            </button>
+            <button
+              onClick={() => setViewTab("sold")}
+              className={`flex-1 md:flex-none px-6 py-2 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                viewTab === "sold"
+                  ? "bg-white text-green-600 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <UserCheck size={16} /> Sold
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {directoryPlayers.length > 0 ? (
+            directoryPlayers.map((player) => (
+              <div
+                key={player.id}
+                className="bg-white p-4 rounded-2xl border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow"
+              >
+                <img
+                  src={player.image}
+                  className="w-12 h-12 rounded-full bg-gray-50 border border-gray-100"
+                  alt={player.name}
+                />
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-bold text-sm text-gray-900 truncate">
+                    {player.name}
+                  </h4>
+                  <p className="text-[10px] text-gray-500 font-medium">
+                    {player.position} • ID: {player.id}
+                  </p>
+                  {viewTab === "sold" && (
+                    <p className="text-[10px] text-green-600 font-bold mt-1 truncate">
+                      Sold to {player.owner} @ {player.finalPrice}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+              <p className="text-gray-400 font-medium">
+                No players found in this category.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

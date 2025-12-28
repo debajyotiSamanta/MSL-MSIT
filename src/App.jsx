@@ -9,7 +9,7 @@ import Rosters from "./pages/Rosters";
 import MatchSchedule from "./pages/MatchSchedule";
 import Rulebook from "./pages/Rulebook";
 import Venue from "./pages/Venue";
-import PastWinners from "./pages/PastWinners";
+import PastWinners from "./pages/Gallery";
 import ManagerRegistration from "./pages/ManagersRegistration";
 
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
         {activePage === "schedule" && <MatchSchedule />}
         {activePage === "rulebook" && <Rulebook />}
         {activePage === "venue" && <Venue />}
-        {activePage === "pastwinners" && <PastWinners />}
+        {activePage === "gallery" && <PastWinners />}
         {activePage === "managers" && <ManagerRegistration />}
       </main>
 

@@ -75,7 +75,7 @@ export default function Footer({ onNavigate }) {
               <li onClick={() => onNavigate("rulebook")} className="hover:text-white cursor-pointer transition-colors">Rulebook</li>
               <li onClick={() => onNavigate("schedule")} className="hover:text-white cursor-pointer transition-colors">Match Schedule</li>
               <li onClick={() => onNavigate("venue")} className="hover:text-white cursor-pointer transition-colors">Venue Map</li>
-              <li onClick={() => onNavigate("pastwinners")} className="hover:text-white cursor-pointer transition-colors">Past Winners</li>
+              <li onClick={() => onNavigate("gallery")} className="hover:text-white cursor-pointer transition-colors">Gallery</li>
             </ul>
           </div>
 

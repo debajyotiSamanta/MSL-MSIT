@@ -4,9 +4,9 @@ import {
   Mail, 
   Image as ImageIcon, 
   Upload, 
-  QrCode, 
   FileCheck, 
-  CheckCircle 
+  CheckCircle,
+  BookOpen
 } from 'lucide-react';
 
 /**
@@ -20,11 +20,33 @@ export default function RegistrationSection() {
     name: '', 
     email: '', 
     rollNo: '', 
+    department: 'CSE (Core)',
     position: 'Forward', 
     phone: '', 
     image: null, 
-    paymentProof: null 
+    paymentProof: null,
+    transactionId: ''
   });
+
+  const departments = [
+    "CSE (Core)",
+    "CSE (AI & ML)",
+    "CSE (Data Science)",
+    "CSE (Cyber Security)",
+    "CSBS",
+    "CSE (IoT)",
+    "CSE (AIDS)",
+    "CSIT",
+    "IT",
+    "ECE",
+    "EE",
+    "Mechanical",
+    "Civil",
+    "BCA",
+    "MCA",
+    "BBA",
+    "MBA"
+  ];
 
   const handleFileChange = (e, field) => {
     const file = e.target.files[0];
@@ -107,13 +129,30 @@ export default function RegistrationSection() {
               </div>
             </div>
 
+            {/* Department Selection */}
+            <div>
+              <label className="text-sm font-bold text-gray-700 block mb-1">Department / Course</label>
+              <div className="relative">
+                <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <select 
+                  className="w-full pl-10 p-3 border rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none font-medium appearance-none" 
+                  value={regData.department} 
+                  onChange={e => setRegData({...regData, department: e.target.value})}
+                >
+                  {departments.map((dept) => (
+                    <option key={dept} value={dept}>{dept}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-sm font-bold text-gray-700 block mb-1">Roll Number</label>
                 <input 
                   required 
                   className="w-full p-3 border rounded-xl bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none uppercase" 
-                  placeholder="e.g. 14200223025" 
+                  placeholder="e.g. 14200123" 
                   value={regData.rollNo} 
                   onChange={e => setRegData({...regData, rollNo: e.target.value})} 
                 />
@@ -164,9 +203,8 @@ export default function RegistrationSection() {
                 <span className="text-3xl font-black text-orange-900">₹200.00</span>
               </div>
               <div className="bg-white p-2 rounded-xl shadow-md border border-orange-100">
-                {/* <QrCode className="w-14 h-14 text-gray-800" /> */}
                 <img
-                  src="../src/assets/msit-logo.png"
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MSL2026-PAYMENT-GATEWAY"
                   alt="QRCode"
                   className="h-20 w-20 object-cover"
                 />
@@ -199,6 +237,8 @@ export default function RegistrationSection() {
                 required 
                 className="w-full p-3 border rounded-xl bg-gray-50 focus:ring-2 focus:ring-orange-500 outline-none" 
                 placeholder="Enter unique transaction ID" 
+                value={regData.transactionId}
+                onChange={e => setRegData({...regData, transactionId: e.target.value})}
               />
             </div>
             
